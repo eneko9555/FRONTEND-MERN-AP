@@ -4,7 +4,7 @@ const Paciente = ({paciente}) => {
 
     const {setEdicion, eliminarPaciente} = usePacientes()
 
-    const { email, fecha, nombre, propietario, sintomas, _id } = paciente
+    const { email, fecha, nombre, edad, propietario, sintomas, _id } = paciente
 
 
     const formatearFecha = (fecha) => {
@@ -28,6 +28,11 @@ const Paciente = ({paciente}) => {
             <p className="font-bold uppercase text-indigo-700 pb-1">
                 Email : {''}
                <span className="font-normal normal-case text-gray-600"> {email}</span> 
+            </p>
+
+            <p className="font-bold uppercase text-indigo-700 pb-1">
+                Edad : {''}
+               <span className="font-normal normal-case text-gray-600"> {edad}</span> 
             </p>
 
             <p className="font-bold uppercase text-indigo-700 pb-1">

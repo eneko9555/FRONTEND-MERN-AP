@@ -6,6 +6,7 @@ const Formulario = () => {
     const [nombre, setNombre] = useState('')
     const [propietario, setPropietario] = useState('')
     const [email, setEmail] = useState('')
+    const [edad, setEdad] = useState('')
     const [fecha, setFecha] = useState('')
     const [sintomas, setSintomas] = useState('')
     const [id, setId] = useState(null)
@@ -21,6 +22,7 @@ const Formulario = () => {
             setNombre(paciente.nombre)
             setPropietario(paciente.propietario)
             setEmail(paciente.email)
+            setEdad(paciente.edad)
             setFecha((paciente.fecha).substring(0,10))
             setSintomas(paciente.sintomas)
             setId(paciente._id)
@@ -37,7 +39,7 @@ const Formulario = () => {
         e.preventDefault()
 
         //validar form
-        if ([nombre, propietario, email, fecha, sintomas].includes('')) {
+        if ([nombre, propietario, email, edad, fecha, sintomas].includes('')) {
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
                 error: true
@@ -45,7 +47,7 @@ const Formulario = () => {
             return;
         }
         
-        guardarPaciente({nombre, propietario, email, fecha, sintomas, id})
+        guardarPaciente({nombre, propietario, email, edad, fecha, sintomas, id})
         setAlerta({
             msg:'Guardado Correctamente'
         })
@@ -54,6 +56,7 @@ const Formulario = () => {
         setEmail('')
         setPropietario('')
         setFecha('')
+        setEdad('')
         setSintomas('')
         setId('')
 
@@ -122,6 +125,20 @@ const Formulario = () => {
                         className="border-2 w-full p-2 rounded-md"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                    />
+                </div>
+
+                <div className=" flex flex-col p-4 gap-2">
+                    <label htmlFor="edad"
+                        className="text-gray-700 uppercase font-bold"
+                    > Edad </label>
+                    <input
+                        type="number"
+                        id="edad"
+                        placeholder="Edad del paciente "
+                        className="border-2 w-full p-2 rounded-md"
+                        value={edad}
+                        onChange={e => setEdad(e.target.value)}
                     />
                 </div>
 
