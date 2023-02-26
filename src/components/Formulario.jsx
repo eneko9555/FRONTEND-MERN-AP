@@ -5,7 +5,6 @@ import usePacientes from "../hooks/usePacientes"
 const Formulario = () => {
     const [nombre, setNombre] = useState('')
     const [propietario, setPropietario] = useState('')
-    const [email, setEmail] = useState('')
     const [edad, setEdad] = useState('')
     const [fecha, setFecha] = useState('')
     const [sintomas, setSintomas] = useState('')
@@ -21,7 +20,6 @@ const Formulario = () => {
         if(paciente?.nombre){
             setNombre(paciente.nombre)
             setPropietario(paciente.propietario)
-            setEmail(paciente.email)
             setEdad(paciente.edad)
             setFecha((paciente.fecha).substring(0,10))
             setSintomas(paciente.sintomas)
@@ -39,7 +37,7 @@ const Formulario = () => {
         e.preventDefault()
 
         //validar form
-        if ([nombre, propietario, email, edad, fecha, sintomas].includes('')) {
+        if ([nombre, propietario,  edad, fecha, sintomas].includes('')) {
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
                 error: true
@@ -47,13 +45,13 @@ const Formulario = () => {
             return;
         }
         
-        guardarPaciente({nombre, propietario, email, edad, fecha, sintomas, id})
+        guardarPaciente({nombre, propietario,  edad, fecha, sintomas, id})
         setAlerta({
             msg:'Guardado Correctamente'
         })
 
         setNombre('')
-        setEmail('')
+       
         setPropietario('')
         setFecha('')
         setEdad('')
@@ -114,19 +112,6 @@ const Formulario = () => {
                     />
                 </div>
 
-                <div className=" flex flex-col p-4 gap-2">
-                    <label htmlFor="email"
-                        className="text-gray-700 uppercase font-bold"
-                    > Email </label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Email "
-                        className="border-2 w-full p-2 rounded-md"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                </div>
 
                 <div className=" flex flex-col p-4 gap-2">
                     <label htmlFor="edad"
