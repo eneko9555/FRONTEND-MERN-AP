@@ -14,8 +14,6 @@ const Formulario = () => {
 
     const {guardarPaciente, paciente} = usePacientes()
 
-    
-
     useEffect(() => {
         if(paciente?.nombre){
             setNombre(paciente.nombre)
@@ -25,13 +23,7 @@ const Formulario = () => {
             setSintomas(paciente.sintomas)
             setId(paciente._id)
         }
-        
-
     }, [paciente])
-
-
-
-
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -46,9 +38,13 @@ const Formulario = () => {
         }
         
         guardarPaciente({nombre, propietario,  edad, fecha, sintomas, id})
+
         setAlerta({
             msg:'Guardado Correctamente'
         })
+        setTimeout(() => {
+            setAlerta({})
+        }, 3000);
 
         setNombre('')
        

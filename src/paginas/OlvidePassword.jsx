@@ -13,6 +13,9 @@ const OlvidePassword = () => {
        
         if (email === '') {
             setAlerta({ msg: 'El email es obligatorio', error: true }) 
+            setTimeout(() => {
+                setAlerta({})
+            }, 3000);
             return
         }
     
@@ -21,12 +24,18 @@ const OlvidePassword = () => {
             setAlerta({
                 msg: data.msg
             })
+            setTimeout(() => {
+                setAlerta({})
+            }, 3000);
 
         } catch (error) {
              setAlerta({
                  msg: error.response.data.msg,
                  error: true
              })
+             setTimeout(() => {
+                setAlerta({})
+            }, 3000);
         }
 
     }

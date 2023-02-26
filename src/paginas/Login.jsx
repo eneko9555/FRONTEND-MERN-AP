@@ -15,34 +15,40 @@ const Login = () => {
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-      e.preventDefault()
+    e.preventDefault()
 
-    if([email, password].includes('')){
-      
-        setAlerta({
-          msg: 'Todos los campos son obligatorios',
-          error: true
-        })
-        return
-      }
+    if ([email, password].includes('')) {
 
-      try {
-        const {data} = await clienteAxios.post('/veterinarios/login', {email, password})
-        localStorage.setItem('token', data.token)
-        setAuth(data)
-        navigate('/admin')
+      setAlerta({
+        msg: 'Todos los campos son obligatorios',
+        error: true
+      })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000);
+      return
+    }
 
-      } catch (error) {
-        setAlerta({
-          msg: error.response.data.msg,
-          error: true
-        })
-      }
-    
+    try {
+      const { data } = await clienteAxios.post('/veterinarios/login', { email, password })
+      localStorage.setItem('token', data.token)
+      setAuth(data)
+      navigate('/admin')
+
+    } catch (error) {
+      setAlerta({
+        msg: error.response.data.msg,
+        error: true
+      })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000);
+    }
+
   }
 
 
-  const {msg} = alerta
+  const { msg } = alerta
 
   return (
     <>

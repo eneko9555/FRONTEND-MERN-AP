@@ -1,11 +1,11 @@
 import AdminNav from "../components/AdminNav"
-import {  useState } from "react"
+import { useState } from "react"
 import Alerta from "../components/alerta"
 import useAuth from "../hooks/useAuth"
 
 const CambiarPassword = () => {
 
-  const {guardarPassword} = useAuth()
+  const { guardarPassword } = useAuth()
   const [alerta, setAlerta] = useState({})
   const [password, setPassword] = useState({
     pwd_actual: "",
@@ -21,6 +21,9 @@ const CambiarPassword = () => {
         msg: 'Todos los campos son obligatorios',
         error: true
       })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000);
       return
     }
 
@@ -29,14 +32,17 @@ const CambiarPassword = () => {
         msg: 'El Password debe tener mínimo 6 caracteres',
         error: true
       })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000);
       return
 
     }
 
-   const respuesta = await  guardarPassword(password)
+    const respuesta = await guardarPassword(password)
 
     setAlerta(respuesta)
- 
+
   }
 
 
@@ -61,7 +67,7 @@ const CambiarPassword = () => {
               alerta={alerta}
             />}
 
-         
+
           <form
             onSubmit={handleSubmit}
           >

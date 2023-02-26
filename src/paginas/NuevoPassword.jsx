@@ -9,7 +9,7 @@ const NuevoPassword = () => {
   const [alerta, setAlerta] = useState({})
   const [tokenValido, setTokenValido] = useState(false)
   const [iniciarSesion, setIniciarSesion] = useState(false)
-  
+
 
   const params = useParams()
   const { token } = params;
@@ -21,6 +21,9 @@ const NuevoPassword = () => {
         setAlerta({
           msg: 'Escribe tu nuevo Password'
         })
+        setTimeout(() => {
+          setAlerta({})
+        }, 3000);
         setTokenValido(true)
 
       } catch (error) {
@@ -28,6 +31,9 @@ const NuevoPassword = () => {
           msg: 'Hubo un error con el enlace',
           error: true
         })
+        setTimeout(() => {
+          setAlerta({})
+        }, 3000);
         console.log(error);
       }
     }
@@ -43,6 +49,9 @@ const NuevoPassword = () => {
         msg: 'El password debe tener mínimo 6 caracteres',
         error: true
       })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000);
       return
     }
 
@@ -53,15 +62,21 @@ const NuevoPassword = () => {
         msg: data.msg,
         error: false
       })
-     
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000);
+
       setIniciarSesion(true)
-      
+
 
     } catch (error) {
       setAlerta({
         msg: error.response.msg,
         error: true
       })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000);
     }
   }
 
